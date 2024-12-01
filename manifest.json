@@ -1,11 +1,43 @@
 {
-    "manifest_version": 3,
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
-    "version": "1.0",
-    "action": {
-      "default_popup": "hello.html",
-      "default_icon": "hello_extensions.png"
+  "manifest_version": 3,
+  "name": "WebObfusc8",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "history",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.google.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "scripts/words.json",
+        "scripts/visited_links.json"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
-  }
-  
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "/popup/popup.html",
+    "default_icon": "/images/icons8-evil-96.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "/scripts/content.js"
+      ]
+    }
+  ]
+}
